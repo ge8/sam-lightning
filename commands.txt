@@ -1,0 +1,56 @@
+aws cloudformation delete-stack --stack-name calculator-add
+aws cloudformation delete-stack --stack-name calculator-multiply
+Funciton Multiplying.
+Docker
+Delete packaged.
+
+
+
+
+---START
+No Internet.
+sam --version
+sam validate --template template.yaml
+
+
+
+
+
+
+sam local start-api
+http://127.0.0.1:3000/?left=5&right=6
+
+
+
+
+
+
+--Internet On
+sam package --template-file template.yaml --s3-bucket sydney-summit-sam --output-template-file packaged.yaml
+sam deploy --template-file packaged.yaml --stack-name calculator-add --capabilities CAPABILITY_IAM
+
+
+
+
+
+
+
+--Internet Off
+sam local generate-event api --method GET --resource "/" --path "/?left=4&right=2"
+sam local invoke "CalculatorAdd" -e request.json
+
+
+
+
+
+
+
+sam local invoke "CalculatorAdd" -e request.json -d 5858
+
+
+
+
+
+
+aws apigateway get-rest-apis
+curl https://dw8katt2i4.execute-api.ap-southeast-2.amazonaws.com/Prod/?left=4&right=3
